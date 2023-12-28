@@ -1,0 +1,164 @@
+[
+    {
+        "id" : 1,
+        "image" : "product1.jpg",
+        "title" : "Product 1",
+        "description" : "Description for product 1",
+        "price" : 19.99,
+        "amount" : 0,
+        "rating" : 5
+    },
+    {
+        "id" : 2,
+        "image" : "product2.jpg",
+        "title" : "Product 2 with a very long title that exceeds 50 characters",
+        "description" : "Description for product 1",
+        "price" : 29.99,
+        "amount" : 0,
+        "rating" : 3
+    },
+    {
+        "id" : 3,
+        "image" : "product1.jpg",
+        "title" : "Product 3",
+        "description" : "Description for product 3",
+        "price" : 10.99,
+        "amount" : 0,
+        "rating" : 5
+    },
+    {
+        "id" : 4,
+        "image" : "product2.jpg",
+        "title" : "Product 4 with a very long title that exceeds 50 characters",
+        "description" : "Description for product 4",
+        "price" : 29.99,
+        "amount" : 0,
+        "rating" : 3
+    },
+    {
+        "id" : 5,
+        "image" : "product1.jpg",
+        "title" : "Product 5",
+        "description" : "Description for product 5",
+        "price" : 39.99,
+        "amount" : 0,
+        "rating" : 4
+    },
+    {
+        "id" : 6,
+        "image" : "product2.jpg",
+        "title" : "Product 6 with a very long title that exceeds 50 characters",
+        "description" : "Description for product 6",
+        "price" : 29.99,
+        "amount" : 0,
+        "rating" : 2
+    },
+    {
+        "id" : 7,
+        "image" : "product2.jpg",
+        "title" : "Product 7",
+        "description" : "Description for product 7",
+        "price" : 49.99,
+        "amount" : 0,
+        "rating" : 5
+    },
+    {
+        "id" : 8,
+        "image" : "product2.jpg",
+        "title" : "Product 8 with a very long title that exceeds 50 characters",
+        "description" : "Description for product 8",
+        "price" : 29.99,
+        "amount" : 0,
+        "rating" : 3
+    },
+    {
+        "id" : 9,
+        "image" : "product2.jpg",
+        "title" : "Product 9",
+        "description" : "Description for product 7",
+        "price" : 49.99,
+        "amount" : 0,
+        "rating" : 1
+    },
+    {
+        "id" : 10,
+        "image" : "product2.jpg",
+        "title" : "Product 10 with a very long title that exceeds 50 characters",
+        "description" : "Description for product 10",
+        "price" : 29.99,
+        "amount" : 0,
+        "rating" : 3
+    },
+    {
+        "id" : 11,
+        "image" : "product2.jpg",
+        "title" : "Product 11",
+        "description" : "Description for product 11",
+        "price" : 19.99,
+        "amount" : 0,
+        "rating" : 4
+    },
+    {
+        "id" : 12,
+        "image" : "product2.jpg",
+        "title" : "Product 12 with a very long title that exceeds 50 characters",
+        "description" : "Description for product 12",
+        "price" : 29.99,
+        "amount" : 0,
+        "rating" : 3
+    },
+    {
+        "id" : 13,
+        "image" : "product2.jpg",
+        "title" : "Product 13",
+        "description" : "Description for product 13",
+        "price" : 49.99,
+        "amount" : 0,
+        "rating" : 5
+    },
+    {
+        "id" : 14,
+        "image" : "product2.jpg",
+        "title" : "Product 14 with a very long title that exceeds 50 characters",
+        "description" : "Description for product 14",
+        "price" : 29.99,
+        "amount" : 0,
+        "rating" : 3
+    },
+    {
+        "id" : 15,
+        "image" : "product2.jpg",
+        "title" : "Product 15",
+        "description" : "Description for product 15",
+        "price" : 9.99,
+        "amount" : 0,
+        "rating" : 1
+    },
+    {
+        "id" : 16,
+        "image" : "product2.jpg",
+        "title" : "Product 16 with a very long title that exceeds 50 characters",
+        "description" : "Description for product 16",
+        "price" : 29.99,
+        "amount" : 0,
+        "rating" : 3
+    },
+    {
+        "id" : 17,
+        "image" : "product2.jpg",
+        "title" : "Product 17",
+        "description" : "Description for product 17",
+        "price" : 49.99,
+        "amount" : 0,
+        "rating" : 5
+    },
+    {
+        "id" : 18,
+        "image" : "product2.jpg",
+        "title" : "Product 18 with a very long title that exceeds 50 characters",
+        "description" : "Description for product 18",
+        "price" : 29.99,
+        "amount" : 0,
+        "rating" : 3
+    }
+]
