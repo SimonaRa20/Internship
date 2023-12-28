@@ -1,0 +1,31 @@
+﻿@page "{articalId}"
+@model BlogWeb.Pages.Articals.EditArticleModel
+@{
+    ViewData["Title"] = "Edit Article";
+}
+
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="mb-4">Edit Article</h2>
+            <form method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="Title">Title:</label>
+                    <input type="text" class="form-control" id="Title" name="Title" asp-for="UpdateArtical.Title" required />
+                </div>
+                <div class="form-group">
+                    <label for="Text">Text:</label>
+                    <textarea class="form-control" id="Text" name="Text" rows="5" asp-for="UpdateArtical.Text"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="Image">Image:</label>
+                    <input type="file" class="form-control-file" id="Image" name="Image" asp-for="UpdateArtical.Image" accept="image/*" />
+                </div>
+                <input type="hidden" asp-for="setArticalId" />
+                <button type="submit" class="btn btn-primary">Update Article</button>
+                <a asp-page="/Index" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>

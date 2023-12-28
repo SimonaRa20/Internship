@@ -1,0 +1,45 @@
+﻿@page
+@model BlogWeb.Pages.Profile.ProfileModel
+@{
+}
+
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="mb-4">Profile</h2>
+            @if (Model.UserProfile != null)
+            {
+                <div>
+                    <h4>User Profile</h4>
+                    <ul>
+                        <li><strong>User Name:</strong> @Model.UserProfile.UserName</li>
+                        <li><strong>Email:</strong> @Model.UserProfile.Email</li>
+                    </ul>
+                </div>
+
+                <h4 class="mt-4">Change Password</h4>
+                <div class="form-group">
+                    <a asp-page="./ChangePassword" class="btn btn-secondary">Change Password</a>
+                </div>
+
+                <h4 class="mt-4">Update Profile</h4>
+                <form method="post" asp-page="./Profile">
+                    <div class="form-group">
+                        <label for="UserName">User Name:</label>
+                        <input type="text" class="form-control" id="UserName" name="UserName" value="@Model.UserProfile.UserName" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Email">Email:</label>
+                        <input type="text" class="form-control" id="Email" name="Email" value="@Model.UserProfile.Email" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update Profile</button>
+                </form>
+            }
+            else
+            {
+                <p>No user profile data available.</p>
+            }
+        </div>
+    </div>
+</div>

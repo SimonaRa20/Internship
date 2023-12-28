@@ -1,0 +1,47 @@
+﻿@page
+@model BlogWeb.Pages.Permissions.PermissionsModel
+@{
+}
+
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="mb-4">Permissions</h2>
+            @if (Model.PermissionsList != null && Model.PermissionsList.Any())
+            {
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>User Name</th>
+                            <th>Write Articles</th>
+                            <th>Rate Articles</th>
+                            <th>Write Comments</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var userPermissions in Model.PermissionsList)
+                        {
+                            <tr>
+                                <td>@userPermissions.UserName</td>
+                                <td>@userPermissions.WriteArticals</td>
+                                <td>@userPermissions.RateArticals</td>
+                                <td>@userPermissions.WriteComments</td>
+                                <td>
+                                    <form method="get" asp-page="./EditPermissions" asp-route-userId="@userPermissions.UserId">
+                                        <button type="submit" class="btn btn-primary">Edit Permissions</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>No permission data available.</p>
+            }
+        </div>
+    </div>
+</div>

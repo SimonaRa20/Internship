@@ -1,0 +1,27 @@
+﻿@page
+@model BlogWeb.Pages.Articals.AddArticleModel
+@{
+}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="mb-4">Create New Artical</h2>
+            <form method="post" asp-page="./AddArtical" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="Title">Title:</label>
+                    <input type="text" class="form-control" id="Title" name="Title" asp-for="Artical.Title" required />
+                </div>
+                <div class="form-group">
+                    <label for="Text">Text:</label>
+                    <textarea class="form-control" id="Text" name="Text" rows="5" asp-for="Artical.Text"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="Image">Image:</label>
+                    <input type="file" class="form-control-file" id="Image" name="Image" asp-for="Artical.Image" accept="image/*" />
+                </div>
+                <button type="submit" class="btn btn-primary">Create Artical</button>
+            </form>
+
+        </div>
+    </div>
+</div>

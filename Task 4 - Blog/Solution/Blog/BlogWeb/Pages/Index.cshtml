@@ -1,0 +1,244 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+
+        <div class="col-md-12 mb-4">
+            <form method="get" asp-page="./Index">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search articles" name="searchQuery" value="@Request.Query["searchQuery"]" />
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-outline-secondary">Search</button>
+                    </div>
+                    @if (!string.IsNullOrEmpty(Request.Query["searchQuery"]))
+                    {
+                        <div class="input-group-append">
+                            <a href="./Index" class="btn btn-outline-secondary">Clear</a>
+                        </div>
+                    }
+                </div>
+            </form>
+        </div>
+
+
+        @if(!string.IsNullOrEmpty(Request.Query["searchQuery"]))
+        {
+            <div>
+                <div class="alert alert-info">
+                    Showing search results for <strong>@Request.Query["searchQuery"]</strong>
+                </div>
+            </div>
+        }
+
+        @if (User.Identity.IsAuthenticated && Model.UserPermissions.WriteArticals)
+        {
+            <form method="get" asp-page="./Articles/AddArticle">
+                <button type="submit" class="btn btn-primary">Create New Article</button>
+            </form>
+        }
+
+        @if (Model.Articals != null && Model.Articals.Any())
+        {
+            <div>
+                <h2 class="text-center">Articles</h2>
+                <div class="row">
+                    @foreach (var article in Model.Articals)
+                    {
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                                @if (article.Image != null && article.Image.Length > 0)
+                                {
+                                    <div style="overflow: hidden; height:200px">
+                                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(article.Image)" alt="Article Image" class="card-img-top w-100" style="object-fit: cover; height:100%" />
+                                    </div>
+                                }
+                                <div class="card-body">
+                                    <p class="text-center">Total votes: @article.TotalVotes</p>
+                                    <h3 class="text-center">@article.Title</h3>
+                                    @if (article.Text != null)
+                                    {
+                                        <p class="text-center">@article.Text.Substring(0, Math.Min(article.Text.Length, 50))</p>
+                                    }
+
+                                    <div class="text-center mb-3">
+                                        @if (User.Identity.IsAuthenticated && Model.UserPermissions.RateArticals)
+                                        {
+                                            <p class="mb-1">Vote</p>
+                                            <form method="post" asp-page="./Index" class="d-inline">
+                                                <button type="submit" class="btn btn-success mx-1">+</button>
+                                                <input type="hidden" name="Vote" value="1">
+                                                <input type="hidden" name="VotedArtical" value="@article.Id">
+                                            </form>
+
+                                            <form method="post" asp-page="./Index" class="d-inline">
+                                                <button type="submit" class="btn btn-success mx-1">-</button>
+                                                <input type="hidden" name="Vote" value="-1">
+                                                <input type="hidden" name="VotedArtical" value="@article.Id">
+                                            </form>
+                                        }
+
+                                        @if (User.Identity.IsAuthenticated && Model.UserPermissions.WriteArticals)
+                                        {
+                                            <p class="mb-1">Actions</p>
+                                            <form method="get" asp-page="./Articles/DeleteArticle" asp-route-articalId="@article.Id" class="d-inline">
+                                                <button type="submit" class="btn btn-danger mx-1">Delete</button>
+                                            </form>
+
+                                            <form method="get" asp-page="./Articles/EditArticle" asp-route-articalId="@article.Id" class="d-inline">
+                                                <button type="submit" class="btn btn-primary mx-1">Edit</button>
+                                            </form>
+                                        }
+                                    </div>
+
+                                    <div class="text-center">
+                                        <form method="get" asp-page="./Articles/DetailedArticle" asp-route-articalId="@article.Id">
+                                            <button type="submit" class="btn btn-primary">Read more</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        }
+
+        @if (Model.ArticalsByRank != null && Model.ArticalsByRank.Any())
+        {
+            <div>
+                <h2 class="text-center">Top 3 Articles By Rank</h2>
+                <div class="row">
+                    @foreach (var article in Model.ArticalsByRank)
+                    {
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                                @if (article.Image != null && article.Image.Length > 0)
+                                {
+                                    <div style="overflow: hidden; height:200px">
+                                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(article.Image)" alt="Article Image" class="card-img-top w-100" style="object-fit: cover; height:100%" />
+                                    </div>
+                                }
+                                <div class="card-body">
+                                    <p class="text-center">Total votes: @article.TotalVotes</p>
+                                    <h3 class="text-center">@article.Title</h3>
+                                    @if (article.Text != null)
+                                    {
+                                        <p class="text-center">@article.Text.Substring(0, Math.Min(article.Text.Length, 50))</p>
+                                    }
+
+                                    <div class="text-center mb-3">
+                                        @if (User.Identity.IsAuthenticated && Model.UserPermissions.RateArticals)
+                                        {
+                                            <p class="mb-1">Vote</p>
+                                            <form method="post" asp-page="./Index" class="d-inline">
+                                                <button type="submit" class="btn btn-success mx-1">+</button>
+                                                <input type="hidden" name="Vote" value="1">
+                                                <input type="hidden" name="VotedArtical" value="@article.Id">
+                                            </form>
+
+                                            <form method="post" asp-page="./Index" class="d-inline">
+                                                <button type="submit" class="btn btn-success mx-1">-</button>
+                                                <input type="hidden" name="Vote" value="-1">
+                                                <input type="hidden" name="VotedArtical" value="@article.Id">
+                                            </form>
+                                        }
+
+                                        @if (User.Identity.IsAuthenticated && Model.UserPermissions.WriteArticals)
+                                        {
+                                            <p class="mb-1">Actions</p>
+                                            <form method="get" asp-page="./Articles/DeleteArticle" asp-route-articalId="@article.Id" class="d-inline">
+                                                <button type="submit" class="btn btn-danger mx-1">Delete</button>
+                                            </form>
+
+                                            <form method="get" asp-page="./Articles/EditArticle" asp-route-articalId="@article.Id" class="d-inline">
+                                                <button type="submit" class="btn btn-primary mx-1">Edit</button>
+                                            </form>
+                                        }
+                                    </div>
+
+                                    <div class="text-center">
+                                        <form method="get" asp-page="./Articles/DetailedArticle" asp-route-articalId="@article.Id">
+                                            <button type="submit" class="btn btn-primary">Read more</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        }
+
+        @if (Model.ArticalsByComment != null && Model.ArticalsByComment.Any())
+        {
+            <div>
+                <h2 class="text-center">Last 3 Commented Articles</h2>
+                <div class="row">
+                    @foreach (var article in Model.ArticalsByComment)
+                    {
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                                @if (article.Image != null && article.Image.Length > 0)
+                                {
+                                    <div style="overflow: hidden; height:200px">
+                                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(article.Image)" alt="Article Image" class="card-img-top w-100" style="object-fit: cover; height:100%" />
+                                    </div>
+                                }
+                                <div class="card-body">
+                                    <p class="text-center">Total votes: @article.TotalVotes</p>
+                                    <h3 class="text-center">@article.Title</h3>
+                                    @if (article.Text != null)
+                                    {
+                                        <p class="text-center">@article.Text.Substring(0, Math.Min(article.Text.Length, 50))</p>
+                                    }
+
+                                    <div class="text-center mb-3">
+                                        @if (User.Identity.IsAuthenticated && Model.UserPermissions.RateArticals)
+                                        {
+                                            <p class="mb-1">Vote</p>
+                                            <form method="post" asp-page="./Index" class="d-inline">
+                                                <button type="submit" class="btn btn-success mx-1">+</button>
+                                                <input type="hidden" name="Vote" value="1">
+                                                <input type="hidden" name="VotedArtical" value="@article.Id">
+                                            </form>
+
+                                            <form method="post" asp-page="./Index" class="d-inline">
+                                                <button type="submit" class="btn btn-success mx-1">-</button>
+                                                <input type="hidden" name="Vote" value="-1">
+                                                <input type="hidden" name="VotedArtical" value="@article.Id">
+                                            </form>
+                                        }
+
+                                        @if (User.Identity.IsAuthenticated && Model.UserPermissions.WriteArticals)
+                                        {
+                                            <p class="mb-1">Actions</p>
+                                            <form method="get" asp-page="./Articles/DeleteArticle" asp-route-articalId="@article.Id" class="d-inline">
+                                                <button type="submit" class="btn btn-danger mx-1">Delete</button>
+                                            </form>
+
+                                            <form method="get" asp-page="./Articles/EditArticle" asp-route-articalId="@article.Id" class="d-inline">
+                                                <button type="submit" class="btn btn-primary mx-1">Edit</button>
+                                            </form>
+                                        }
+                                    </div>
+
+                                    <div class="text-center">
+                                        <form method="get" asp-page="./Articles/DetailedArticle" asp-route-articalId="@article.Id">
+                                            <button type="submit" class="btn btn-primary">Read more</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>

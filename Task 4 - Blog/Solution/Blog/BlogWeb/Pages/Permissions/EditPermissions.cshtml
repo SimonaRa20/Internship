@@ -1,0 +1,25 @@
+﻿@page "{userId}"
+@model BlogWeb.Pages.Permissions.EditPermissionsModel
+@{
+}
+
+<h2>Edit Permissions for @Model.UserName</h2>
+
+<form method="post" asp-page="./EditPermissions">
+    <div class="form-group">
+        <label for="writeArticals">Write Articles:</label>
+        <select class="form-control" id="writeArticals" name="WriteArticals" asp-items="Model.PermissionOptions"></select>
+    </div>
+
+    <div class="form-group">
+        <label for="rateArticals">Rate Articles:</label>
+        <select class="form-control" id="rateArticals" name="RateArticals" asp-items="Model.PermissionOptions"></select>
+    </div>
+
+    <div class="form-group">
+        <label for="writeComments">Write Comments:</label>
+        <select class="form-control" id="writeComments" name="WriteComments" asp-items="Model.PermissionOptions"></select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
